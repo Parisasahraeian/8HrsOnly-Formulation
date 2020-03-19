@@ -1,0 +1,152 @@
+%
+% My general LaTeX preamble
+%
+\usepackage[utf8]{inputenc}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{color}
+\newcommand{\alert}{\textcolor{red}}
+\newcommand{\comm}{\textcolor{blue}}
+\newcommand{\review}{\textcolor{magenta}}
+\usepackage[pdfstartview=FitH,pdfpagelayout=OneColumn]{hyperref}
+\usepackage{url}
+\usepackage{lineno}
+\modulolinenumbers[3]
+\usepackage{tabularx,multicol,multirow}
+\usepackage{enumerate}
+\usepackage{setspace}
+\usepackage{soul} 
+\usepackage{wrapfig}
+%\usepackage{pslatex} %times new roman
+%\usepackage{times} %times
+\usepackage{palatino}
+\usepackage[sc]{mathpazo} %math to match palatino
+\usepackage[T1]{fontenc}
+
+
+\usepackage{algorithmicx,algpseudocode}
+
+\usepackage{tikz,tikz-network}
+
+\linespread{1.05}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{cor}{Corollary}
+ \newtheorem{clm}[thm]{Claim}
+ 
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+\newtheorem{eg}{Example}
+\newtheorem{form}{Formulation}
+
+\theoremstyle{remark}
+\newtheorem{rmk}{Remark}
+\newtheorem{nt}{Note}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\calT}{\mathcal{T}}
+\newcommand{\calG}{\mathcal{G}}
+\newcommand{\calB}{\mathcal{B}}
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\calU}{\mathcal{U}}
+\newcommand{\calN}{\mathcal{N}}
+\newcommand{\rln}{\mathbb{R}^n}
+\newcommand{\rlnp}{\mathbb{R}^n_+}
+\newcommand{\rlnbyp}{\mathbb{R}^n\times\mathbb{R}^p}
+\newcommand{\rlp}{\mathbb{R}_+}
+\newcommand{\rl}{\mathbb{R}}
+\newcommand{\eps}{\epsilon}
+\newcommand{\lam}{\lambda}
+\newcommand{\doh}{\partial}
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\imp}{\Rightarrow}
+\newcommand{\grad}{\nabla}
+\newcommand{\hess}{{\nabla^2}}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\third}{\frac{1}{3}}
+\newcommand{\twothird}{\frac{2}{3}}
+\newcommand{\znp}{\mathbb{Z}^n_+}
+\newcommand{\zn}{\mathbb{Z}^n}
+\newcommand{\z}{\mathbb{Z}}
+\newcommand{\zp}{\mathbb{Z}_+}
+\newcommand{\andint}{\textrm{ and integer}}
+\newcommand{\bin}{\{0,1\}^n}
+\newcommand{\noun}[1]{\textsc{#1}}
+\newcommand{\tends}{\rightarrow}
+\newcommand{\bij}{\leftrightarrow}
+\newcommand{\symdif}{\,\triangle\,}
+\newcommand{\suchthat}{\;\ifnum\currentgrouptype=16 \middle\fi|\;}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\providecommand\iff{\DOTSB\;\Longleftrightarrow\;}
+\providecommand\implies{\DOTSB\;\Longrightarrow\;}
+\providecommand\impliedby{\DOTSB\;\Longleftarrow\;}
+
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the 
+% starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\diam}{diam}
+\newcommand\Bl[1]{\mathopen{\hbox{\Large\rm#1}}}
+\newcommand\Br[1]{\mathclose{\hbox{\Large\rm#1}}}
+\newcommand{\cev}[1]{\reflectbox{\ensuremath{\vec{\reflectbox{\ensuremath{#1}}}}}}
+\def\bx{{\bf x}}
+\def\by{{\bf y}}
+\def\bz{{\bf z}}
+\def\bw{{\bf w}}
+\def\bm{{\bf m}}
+\def\bV{{\bf V}}
+\def\one{{\bf 1}}
+\def\zero{{\bf 0}}
+\def\bull{\par $\,\bullet\,$}
+\def\reals{{I\kern-.35em R}}
+\def\argmin{\mathop{\rm argmin}}
+
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\green}{\textcolor{green}}
+\newcommand{\cyan}{\textcolor{cyan}}
+\newcommand{\orange}{\textcolor{orange}}
+\newcommand{\magenta}{\textcolor{magenta}}
+\newcommand{\violet}{\textcolor{violet}}
+\newcommand{\gray}{\textcolor{gray}}
+\newcommand{\brown}{\textcolor{brown}}
+
+
+
+
+%\usepackage{authblk}
+%\author[1]{Don Joe}
+%\author[2]{Smith K.}
+%\author[1]{Wanderer}
+%\author[1]{Static}
+%\affil[1]{TeX.SX}
+%\affil[2]{Both on a bus}
+%\setcounter{Maxaffil}{0}
+%\renewcommand\Affilfont{\itshape\small}
+
+
+

@@ -1,0 +1,91 @@
+\documentclass[11pt]{article}
+\input{preamble.tex}
+
+
+\begin{document}
+	 
+	 I want to cite a paper here~\cite{BBFNFMP2019closecentralclq}.
+	 
+	 Lookup: eqref; ref; label; cite commands and spacing commands in \LaTeX.
+
+\section{Parameters}
+\begin{itemize}
+\item $T$ denotes the number of time slots in the planning horizon. \hl{For example, if each time slot has 15 minutes and the planning horizon is two weeks, so we have $T = 4\times 24 \times 14 = 1344$ slots in total.}
+
+\item Number of shifts needed to cover each slot $k$ is given by $r_k$, where $k \in [T]$.
+
+\item All shifts have equal duration, denoted by $d$.
+
+\item Each schedule consists of $n$ shifts.
+
+\item Number of schedules constructed is denoted by $m$.
+
+\item Minimum delay between two consecutive shifts in any schedule is denoted by $\Delta$. 
+
+\end{itemize}
+
+\section{Assumptions} 
+\begin{itemize}
+
+\item We consider only one shift type.
+
+\item All schedules created must begin and end inside the planning horizon \underline{excluding} the minimum resting delay $\Delta$ after the last shift, i.e. no schedule or overtime shift can span across two different pay-periods. Since the minimum resting delay after the last shift cannot be enforced inside the planning horizon, this must be accounted for when schedules are assigned to employees. 
+
+\item A shift can overrun, but it can not exceed $d$.
+
+\end{itemize}
+
+
+% \section{Shift distribution model}
+
+% \paragraph{Decision variables}
+% \indent\\
+
+% $x_i$: Number of shifts that must start in time-slot $i$, for each $i = 1,\ldots, T-d+1$.
+% \\
+
+
+% \begin{align}
+% \label{eq.SDobj}\textbf{(8 hr SDO)}\quad\min \sum_{i=1}^{T-d+1}x_i & \\
+% \label{eq.SDcon} \text{subject to.}  \quad  \sum_{i=\max\{1,k-d+1\}}^{\min\{k,T-d+1\}}x_i&\ge r_k \quad \forall k =1,\ldots,T\\
+% x_i & \ge 0 \text{ and integer } \forall  i = 1,\ldots, T-d+1
+% \end{align}
+
+
+
+\section{Shift scheduling formulation}
+\begin{itemize}
+    \item Let's remove $o_u$ variable. No overtime.
+    \item Each shift is not fixed/equal duration; minimum shift length is $d_\ell$ and maximum shift length is $d_M$. 
+\end{itemize}
+\paragraph{Decision variables} 
+\begin{itemize}
+\item $s_{ij}$: Start time of the $i$-th shift in the $j$-th schedule, for $i = 1,\ldots,n; j=1,\ldots,m$. 
+\item  $t_{ij}$ : Completion time of the $i$-th shift in the $j$-th schedule, for $i = 1,\ldots,n; j=1,\ldots,m$.
+\item $z_{ijk}$ : Binary  variable that indicates if the $i$-th shift in the $j$-th schedule covers time-slot $k$, for $ i = 1,\ldots,n; j=1,\ldots,m; k=1\ldots,T$.
+\item $o_{u}$: Number of overtime shifts starting at time-slot $u$, for $u= 1,\ldots, T-d+1$.
+\end{itemize}
+\begin{align}
+\label{eq.ATCSobj}\textbf{(SSO)}\quad\min \sum_{i=1}^{n}\sum_{j=1}^{m}(t_{ij}-s_{ij}) &+ \sum_{u=1}^{T-d+1} o_{u}\\
+\label{eq.ATCSnextshiftcon}\text{subject to.} \quad s_{i+1,j} \ge t_{ij} + \Delta &\quad \forall i=1,\ldots,n;\\
+\nonumber &\quad\  j=1,\ldots, m\\
+\label{eq.ATCSminshiftlength}t_{ij} - s_{ij} = d  &\quad \forall i=1,\ldots,n; \\
+\nonumber &\quad\ j=1,\ldots, m\\
+\label{eq.ATCSdemandcon} \sum_{i=1}^{n}\sum_{j=1}^{m}z_{ijk} + \sum_{u=1}^{T-d+1}o_{u}\ge r_k  &\quad \forall k=1,\ldots,T\\
+\label{eq.ATCSstartb4k}s_{ij} \le k\times z_{ijk} + [T-(n-i+1)(d + \Delta)]\times(1-z_{ijk}) &\quad \forall i=1,\ldots,n; \\
+\nonumber &\quad \ j=1,\ldots, m k=1,\ldots,T\\
+\label{eq.ATCSendafterk}t_{ij} \ge k\times z_{ijk} + i\times(d+\Delta)\times(1-z_{ijk}) &\quad \forall  i=1,\ldots,n; \\
+\nonumber &\quad \ j=1,\ldots, m; k=1,\ldots,T\\
+\label{eq.ATCSdisaggZ}\sum_{i=1}^{n}z_{ijk} \le 1 &\quad  \forall  j=1,\ldots, m; \\[-3mm]
+\nonumber &\quad\ k=1,\ldots,T\\
+\label{eq.lastshiftbound} t_{n,j}\le T &\quad \forall  j=1,\ldots, m\\
+\label{eq.ATCSNN} s_{ij}, t_{ij}  \ge 0 \text{ and integer}  &\quad \forall  i=1,\ldots,n; \\
+\nonumber & \quad\ j=1,\ldots, m
+\end{align}
+
+
+
+\bibliography{refs}
+% \bibliographystyle{plainnat}
+\bibliographystyle{plain}
+\end{document}
